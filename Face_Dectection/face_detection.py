@@ -20,6 +20,8 @@ while True:
         cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 255, 255), 5)
     cv2.imshow('Face Detector', frame)
     key = cv2.waitKey(1)
+
+    #key is -1, no key has been pressed
     if key != -1:
         break
 
