@@ -8,6 +8,7 @@ trained_face_data = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_f
 webcam = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 
 #TODO: Make a loop to continuously capture frames from the camera
-# and use the trained model to get the coordinates of the faces
+#TODO: Use the trained model to get the coordinates of the faces
+
 #TODO: Draw a rectangle around faces that are detected
 #TODO: Use waitKey() to exit the loop
