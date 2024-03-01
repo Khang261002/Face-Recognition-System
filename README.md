@@ -1,4 +1,4 @@
 # Face-Recognition-System
 
-## Libraries Eequired
+## Libraries Required
 1. pip install opencv-python
