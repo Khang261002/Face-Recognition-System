@@ -19,3 +19,10 @@ while True:
     for (x, y, w, h) in face_coordinates:
         cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 255, 255), 5)
     cv2.imshow('Face Detector', frame)
+    key = cv2.waitKey(1)
+    if key != -1:
+        break
+
+# Release the webcam
+webcam.release()
+cv2.destroyAllWindows()
