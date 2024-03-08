@@ -5,6 +5,7 @@ import sys
 sys.path.append('../')
 from Face_Detection import face_detection
 
+#TODO: Crop the image using the coordinate provided and save it
 def crop_and_save(frame, coordinate, path):
     x, y, w, h = coordinate
     cropped_frame = frame[y:y + h, x:x + w]
