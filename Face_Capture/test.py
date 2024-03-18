@@ -23,7 +23,7 @@ def crop_and_save(frame, coordinate, path, num_images, count=[0]):
 webcam = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 flag = True
 
-while flag:
+while webcam.isOpened() and flag:
     successful_frame_read, frame = webcam.read()
     face_coordinates = face_detection.detection(frame)
 
