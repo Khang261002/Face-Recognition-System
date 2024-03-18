@@ -21,7 +21,7 @@ The project consists of two main Python scripts:
 2. Install the required dependencies: (We are using Python 3.11)
 
     ```bash
-    pip install opencv-python pillow
+    pip install opencv-python pillow numpy
     ```
 
 3. Run the `face_capture.py` script to start the face recognition system:
@@ -62,6 +62,7 @@ Face-Recognition-System
 
 - OpenCV (cv2)
 - Pillow (PIL)
+- NumPy
 
 ## Credits
 
