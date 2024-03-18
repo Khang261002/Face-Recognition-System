@@ -3,6 +3,7 @@ from PIL import Image
 
 import cv2
 import sys
+import os
 
 sys.path.append('../')
 from Face_Detection import face_detection
@@ -23,6 +24,8 @@ def crop_and_save(frame, coordinate, path, num_images, count=[0]):
 #TODO: Connect to a camera to capture videos
 webcam = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 flag = True
+if not os.path.exists("./Data/"):
+    os.makedirs("./Data/")
 
 while webcam.isOpened() and flag:
     successful_frame_read, frame = webcam.read()
