@@ -34,27 +34,29 @@ The project consists of two main Python scripts:
 
 ## File Structure
 
-Face-Recognition-System/
+```bash
+Face-Recognition-System
 │
-├── Haarcascade/
-│ ├── Face_Capture/
+├── Haarcascade
+│ ├── Face_Capture
 │ │ ├── __init__.py
 │ │ └── face_capture.py
-│ ├── Face_Detection/
+│ ├── Face_Detection
 │ │ ├── __init__.py
 │ │ ├── face_detection.py
 │ │ └── haarcascade_frontalface_default.xml
-│ └── Data/
-│   ├── username0/
+│ └── Data
+│   ├── user_0
 │   │ ├── face_0.jpeg
 │   │ ├── face_1.jpeg
 │   │ └── ...
-│   ├── username1/
+│   ├── user_1
 │   │ ├── face_0.jpeg
 │   │ ├── face_1.jpeg
 │   │ └── ...
 │   └── ...
 └── README.md
+```
 
 ## Dependencies
 
