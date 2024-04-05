@@ -7,7 +7,7 @@ mp_drawing_styles = mp.solutions.drawing_styles
 
 face_mesh = mp_face_mesh.FaceMesh(max_num_faces=1, refine_landmarks=True)
 
-def detection(frame):
+def detection(frame) -> list[tuple]:
     h, w, c = frame.shape
 
     # Applying face mesh model using MediaPipe

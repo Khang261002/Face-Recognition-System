@@ -34,7 +34,10 @@ while webcam.isOpened() and flag:
     for coordinate in face_coordinates:
         x, y, w, h = coordinate
         cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 255, 255), 5)
-        flag = crop_and_save(frame, coordinate, "../Data/", 100)
+
+        # Add if statement to avoid saving the face that is not fully shown
+        if (x >= 0 and y >= 0 and x + w <= frame.shape[0] and y + h <= frame.shape[1]):
+            flag = crop_and_save(frame, coordinate, "../Data/", 100)
     
     cv2.imshow('Face Detector', frame)
     key = cv2.waitKey(1)
