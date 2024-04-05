@@ -109,8 +109,17 @@ section {
 }
 
 .limited-width {
-    max-width: 400px;
+    max-width: 500px;
     margin: 0 auto;
     padding: 10px;
     margin-bottom: 20px;
+}
+
+.image img {
+    width: 300px;
+    height: 250px;
+    overflow: hidden;
+    margin: 0 auto;
+    display: block;
+    object-fit: cover;
 }
