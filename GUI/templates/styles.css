@@ -133,3 +133,7 @@ section {
     display: block;
     object-fit: cover;
 }
+
+.login-form {
+    text-align: center;
+}
