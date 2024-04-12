@@ -36,7 +36,19 @@ The project consists of two main Python scripts:
 
 ```bash
 Face-Recognition-System
-│
+├── GUI
+│ ├── templates
+│ │ ├── Pictures
+│ │ │ ├── kai.png
+│ │ │ ├── khang.png
+│ │ │ ├── wei.png
+│ │ │ └── yu.png
+│ │ ├── about.html
+│ │ ├── checkin.html
+│ │ ├── index.html
+│ │ ├── register.html
+│ │ └── styles.css
+│ └── app.py
 ├── Haarcascade
 │ ├── Face_Capture
 │ │ ├── __init__.py
@@ -44,7 +56,25 @@ Face-Recognition-System
 │ ├── Face_Detection
 │ │ ├── __init__.py
 │ │ ├── face_detection.py
+│ │ ├── haarcascade_eye.xml
 │ │ └── haarcascade_frontalface_default.xml
+│ └── Data
+│   ├── user_0
+│   │ ├── face_0.jpeg
+│   │ ├── face_1.jpeg
+│   │ └── ...
+│   ├── user_1
+│   │ ├── face_0.jpeg
+│   │ ├── face_1.jpeg
+│   │ └── ...
+│   └── ...
+├── MediaPipe
+│ ├── Face_Capture
+│ │ ├── __init__.py
+│ │ └── face_capture.py
+│ ├── Face_Detection
+│ │ ├── __init__.py
+│ │ └── face_detection.py
 │ └── Data
 │   ├── user_0
 │   │ ├── face_0.jpeg
