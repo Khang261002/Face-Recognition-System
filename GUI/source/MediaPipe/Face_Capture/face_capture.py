@@ -20,7 +20,7 @@ def crop_and_save(frame, coordinate, path, num_images, count=[0]):
         return True
 
 def capture(name) -> None:
-    webcam = cv2.VideoCapture(0, cv2.CAP_DSHOW)
+    webcam = cv2.VideoCapture(0)
     flag = True
     if not os.path.exists("../Data/{}".format(name)):
         os.makedirs("../Data/{}".format(name))
