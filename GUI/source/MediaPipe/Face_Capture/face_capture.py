@@ -1,5 +1,6 @@
 # Import necessary libraries
 from PIL import Image
+from typing import Generator
 
 import cv2
 import sys
@@ -19,7 +20,7 @@ def crop_and_save(frame, coordinate, path, num_images, count=[0]):
     else:
         return True
 
-def capture(name) -> None:
+def capture(name) -> Generator[bytes, None, None]:
     webcam = cv2.VideoCapture(0)
     flag = True
     if not os.path.exists("../Data/{}".format(name)):
