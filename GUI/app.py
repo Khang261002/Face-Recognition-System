@@ -1,8 +1,9 @@
-from flask import Flask, redirect, url_for, request, render_template
-# from source.MediaPipe.Face_Capture import face_capture
+from flask import Flask, redirect, url_for, request, render_template, Response
+from source.MediaPipe.Face_Capture import face_capture
+import cv2
 
 app = Flask(__name__)
- 
+
 @app.route('/')
 @app.route('/index.html')
 def index():
@@ -20,11 +21,15 @@ def checkin():
 def register():
     return render_template('register.html')
 
+@app.route('/video_feed/<name>')
+def video_feed(name):
+    return Response(face_capture.capture(name),
+                    mimetype='multipart/x-mixed-replace; boundary=frame')
+
 @app.route('/success/<name>')
 def success(name):
-    # face_capture.capture(name)
-    return 'welcome %s' % name
- 
+    return render_template('collecting.html', name=name)
+
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     if request.method == 'POST':
@@ -33,6 +38,6 @@ def login():
     else:
         user = request.args.get('username')
         return redirect(url_for('success', name=user))
- 
+
 if __name__ == '__main__':
     app.run(debug=True)

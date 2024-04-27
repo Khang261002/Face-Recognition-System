@@ -37,11 +37,15 @@ def capture(name) -> None:
             # if (x >= 0 and y >= 0 and x + w <= frame.shape[0] and y + h <= frame.shape[1]):
             #     flag = crop_and_save(frame, coordinate, "../Data/{}".format(name), 100)
         
-        cv2.imshow('Face Detector', frame)
-        key = cv2.waitKey(1)
-        # key is -1, no key has been pressed
-        if key != -1:
-            break
+        # cv2.imshow('Face Detector', frame)
+        # key = cv2.waitKey(1)
+        # # key is -1, no key has been pressed
+        # if key != -1:
+        #     break
+        ret, buffer = cv2.imencode('.jpg', frame)
+        frame = buffer.tobytes()
+        yield (b'--frame\r\n'
+               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
     # Release the webcam
     webcam.release()
