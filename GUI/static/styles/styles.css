@@ -137,3 +137,36 @@ section {
 .login-form {
     text-align: center;
 }
+
+.tandc {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.tandc h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.tandc h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.tandc p {
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+.tandc a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.tandc a:hover {
+    text-decoration: underline;
+}

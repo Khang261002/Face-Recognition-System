@@ -26,6 +26,10 @@ def video_feed(name):
     return Response(face_capture.capture(name),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
+@app.route('/terms.html')
+def terms():
+    return render_template('terms.html')
+
 @app.route('/success/<name>')
 def success(name):
     return render_template('collecting.html', name=name)
