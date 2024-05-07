@@ -29,6 +29,7 @@ if not os.path.exists("../Data/"):
 
 while webcam.isOpened() and flag:
     successful_frame_read, frame = webcam.read()
+    frame = cv2.flip(frame, 1)
     face_coordinates = face_detection.detection(frame)
 
     for coordinate in face_coordinates:

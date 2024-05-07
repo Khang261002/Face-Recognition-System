@@ -13,6 +13,7 @@ webcam = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 #TODO: Use waitKey() to exit the loop
 while True:
     successful_frame_read, frame = webcam.read()
+    frame = cv2.flip(frame, 1)
     grayscaled_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     face_coordinates = trained_face_data.detectMultiScale(grayscaled_frame)
 
