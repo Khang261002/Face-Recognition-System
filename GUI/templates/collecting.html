@@ -1,10 +1,23 @@
-<body>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8  offset-lg-2">
-                <h3 class="mt-5">Collecting {{ name }}'s face for Training</h3>
-                <img src="{{ url_for('video_feed', name=name) }}" width="600px">
-            </div>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Face Recognition System (FRS)</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/styles.css')}}" />
+    </head>
+    <body>
+        <div class="navbar">
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('about') }}">About Us</a>
+            <a href="{{ url_for('terms') }}">Terms and Conditions</a>   
         </div>
-    </div>
-</body>
+        <div class="col-lg-8  offset-lg-2">
+            <h3 class="mt-5">Collecting {{ name }}'s face for Training</h3>
+            <img src="{{ url_for('video_feed', name=name) }}" width="600px">
+        </div>
+        <footer>
+            <p><i>&copy;2024 FRS. All rights reserved.</i></p>
+        </footer>
+    </body>
+</html>
