@@ -12,12 +12,43 @@
             <a href="{{ url_for('about') }}">About Us</a>
             <a href="{{ url_for('terms') }}">Terms and Conditions</a>   
         </div>
-        <div class="col-lg-8  offset-lg-2">
+        <div id="imageContainer" class="col-lg-8  offset-lg-2">
             <h3 class="mt-5">Collecting {{ name }}'s face for Training</h3>
-            <img src="{{ url_for('video_feed', name=name) }}" width="600px">
+            <img id="videoStream" src="{{ url_for('video_feed', name=name) }}" width="600px">
+            <button id="clearFetchButton">Clear Fetch</button>
         </div>
         <footer>
             <p><i>&copy;2024 FRS. All rights reserved.</i></p>
         </footer>
+        <script>
+            const clearFetchButton = document.getElementById('clearFetchButton');
+
+            clearFetchButton.addEventListener('click', () => {
+                var videoStream = document.getElementById('videoStream');
+                if (videoStream) {
+                    var container = document.getElementById("imageContainer");
+                    container.removeChild(videoStream);
+                    console.log('Video stream cleared.');
+                    window.location.href = '{{ url_for("index") }}';
+                }
+            });
+            
+            function checkStreamingData() {
+                fetch('../static/json/streaming_data.json')
+                    .then((response) => response.json())
+                    .then((json) => {
+                        // console.log(json.stopped);
+                        if (json.stopped) {
+                            var container = document.getElementById("imageContainer");
+                            container.removeChild(videoStream);
+                            clearInterval(intervalID);
+                            console.log('Video stream cleared.');
+                            window.location.href = '{{ url_for("index") }}';
+                        }
+                    });
+            }
+
+            let intervalID = setInterval(checkStreamingData, 1000);
+        </script>
     </body>
 </html>
