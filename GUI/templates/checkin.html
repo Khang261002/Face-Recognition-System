@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FRS - Check-in</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/styles.css')}}" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FRS - Check-in</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-    <div class="navbar">
-        <a href="index.html">Home</a>
-        <a href="about.html">About Us</a>
-        <a href="terms.html">Terms and Conditions</a>   
-    </div>
+<body class="bg-gradient-to-b from-gray-100 to-gray-300 min-h-screen flex flex-col">
+  <div class="navbar bg-gray-800 text-white p-4 flex justify-center">
+    <a href="{{ url_for('index') }}" class="hover:text-gray-300 mx-4">Home</a>
+    <a href="{{ url_for('about') }}" class="hover:text-gray-300 mx-4">About Us</a>
+    <a href="{{ url_for('terms') }}" class="hover:text-gray-300 mx-4">Terms and Conditions</a>   
+  </div>
     <script src=""></script> <!-- To be inserted -->
-    <footer>
+    <footer class="text-center p-4 bg-gray-800 text-white">
         <p><i>&copy;2024 FRS. All rights reserved.</i></p>
     </footer>
 </body>

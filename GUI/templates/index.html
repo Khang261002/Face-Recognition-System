@@ -1,35 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Face Recognition System (FRS)</title>
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/styles.css')}}" />
-    </head>
-    <body>
-        <div class="navbar">
-            <a href="index.html">Home</a>
-            <a href="about.html">About Us</a>
-            <a href="terms.html">Terms and Conditions</a>   
-        </div>
-        <div class="frs-title">
-            <h1>Face Recognition System (FRS)</h1>
-        </div>
-        <div class="frs-content">
-            <h3>Group Members:</h3>
-            <ul>
-                <li>Kai Chun Goh</li>
-                <li>Khang Huynh Bao Duong</li>
-                <li>Wei Jin Gnoh</li>
-                <li>Yu Qing Leong</li>
-            </ul>
-        </div>
-        <div class="buttons">
-            <a href="register.html" class="button">Register New User</a>
-            <a href="checkin.html" class="button">Check-in</a>
-        </div>
-        <footer>
-            <p><i>&copy;2024 FRS. All rights reserved.</i></p>
-        </footer>
-    </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Face Recognition System (FRS)</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gradient-to-b from-gray-100 to-gray-300 min-h-screen flex flex-col">
+  <div class="navbar bg-gray-800 text-white p-4 flex justify-center">
+    <a href="index.html" class="hover:text-gray-300 mx-4">Home</a>
+    <a href="about.html" class="hover:text-gray-300 mx-4">About Us</a>
+    <a href="terms.html" class="hover:text-gray-300 mx-4">Terms and Conditions</a>   
+  </div>
+  <div class="container mx-auto mt-8 flex-grow">
+    <h1 class="text-4xl font-bold text-center mb-8 text-gray-800">Face Recognition System (FRS)</h1>
+    <div class="frs-content text-center">
+      <h3 class="text-2xl font-semibold mb-4 text-gray-800">Group Members:</h3>
+      <ul class="list-disc list-inside text-gray-700">
+        <li>Kai Chun Goh</li>
+        <li>Khang Huynh Bao Duong</li>
+        <li>Wei Jin Gnoh</li>
+        <li>Yu Qing Leong</li>
+      </ul>
+    </div>
+    <div class="flex justify-center mt-8 space-x-4">
+      <a href="register.html" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded">Register New User</a>
+      <a href="checkin.html" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-6 rounded">Check-in</a>
+    </div>
+  </div>
+  <footer class="text-center p-4 bg-gray-800 text-white">
+    <p><i>&copy;2024 FRS. All rights reserved.</i></p>
+  </footer>
+</body>
 </html>
