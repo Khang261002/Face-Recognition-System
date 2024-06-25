@@ -4,20 +4,33 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Face Recognition System (FRS)</title>
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/styles.css')}}" />
-    </head>
-    <body>
-        <div class="navbar bg-gray-800 text-white p-4 flex justify-center">
-            <a href="{{ url_for('index') }}" class="hover:text-gray-300 mx-4">Home</a>
-            <a href="{{ url_for('about') }}" class="hover:text-gray-300 mx-4">About Us</a>
-            <a href="{{ url_for('terms') }}" class="hover:text-gray-300 mx-4">Terms and Conditions</a>   
+        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+        <style>
+            .font-permanent-marker {
+                font-family: 'Permanent Marker', cursive;
+            }
+        </style>
+      </head>
+      <body class="bg-gradient-to-b from-gray-100 to-gray-300 min-h-screen flex flex-col items-center">
+        <div class="navbar bg-gray-800 text-white p-4 flex items-center w-full">
+            <div class="text-3xl font-permanent-marker flex-shrink-0">
+                FRS
+            </div>
+            <div class="flex-grow flex justify-center">
+                <a href="{{ url_for('index') }}" class="hover:text-gray-300 mx-4">Home</a>
+                <a href="{{ url_for('about') }}" class="hover:text-gray-300 mx-4">About Us</a>
+                <a href="{{ url_for('terms') }}" class="hover:text-gray-300 mx-4">Terms and Conditions</a>
+            </div>
         </div>
         <div id="imageContainer" class="col-lg-8  offset-lg-2">
             <h3 class="mt-5">Collecting {{ name }}'s face for Training</h3>
             <img id="videoStream" src="{{ url_for('video_feed', name=name) }}" width="600px">
             <button id="clearFetchButton">Clear Fetch</button>
         </div>
-        <footer>
+        <footer class="text-center p-4 bg-gray-800 text-white w-full">
             <p><i>&copy;2024 FRS. All rights reserved.</i></p>
         </footer>
         <script>

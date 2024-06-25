@@ -5,12 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Face Recognition System (FRS)</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+  <style>
+      .font-permanent-marker {
+          font-family: 'Permanent Marker', cursive;
+      }
+  </style>
 </head>
-<body class="bg-gradient-to-b from-gray-100 to-gray-300 min-h-screen flex flex-col">
-  <div class="navbar bg-gray-800 text-white p-4 flex justify-center">
-    <a href="index.html" class="hover:text-gray-300 mx-4">Home</a>
-    <a href="about.html" class="hover:text-gray-300 mx-4">About Us</a>
-    <a href="terms.html" class="hover:text-gray-300 mx-4">Terms and Conditions</a>   
+<body class="bg-gradient-to-b from-gray-100 to-gray-300 min-h-screen flex flex-col items-center">
+  <div class="navbar bg-gray-800 text-white p-4 flex items-center w-full">
+      <div class="text-3xl font-permanent-marker flex-shrink-0">
+          FRS
+      </div>
+      <div class="flex-grow flex justify-center">
+          <a href="index.html" class="hover:text-gray-300 mx-4">Home</a>
+          <a href="about.html" class="hover:text-gray-300 mx-4">About Us</a>
+          <a href="terms.html" class="hover:text-gray-300 mx-4">Terms and Conditions</a>
+      </div>
   </div>
   <div class="container mx-auto mt-8 flex-grow">
     <h1 class="text-4xl font-bold text-center mb-8 text-gray-800">Face Recognition System (FRS)</h1>
@@ -28,7 +41,7 @@
       <a href="checkin.html" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-6 rounded">Check-in</a>
     </div>
   </div>
-  <footer class="text-center p-4 bg-gray-800 text-white">
+  <footer class="text-center p-4 bg-gray-800 text-white w-full">
     <p><i>&copy;2024 FRS. All rights reserved.</i></p>
   </footer>
 </body>
