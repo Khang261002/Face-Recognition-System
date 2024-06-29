@@ -12,11 +12,10 @@ def crop_and_save(frame, coordinate, path, num_images, count=[0]):
     x, y, w, h = coordinate
     cropped_frame = frame[y:y + h, x:x + w]
     im = Image.fromarray(cropped_frame)
-    # im.save(path + "/img_{}.jpeg".format(count[0]))
+    im.save(path + "/img_{}.jpeg".format(count[0]))
 
-    print(count[0])
     count[0] += 1
-    if count[0] > num_images:
+    if count[0] >= num_images:
         count[0] = 0
         return False
     else:
@@ -48,7 +47,8 @@ def capture(name) -> Generator[bytes, None, None]:
 
                 # Add if statement to avoid saving the face that is not fully shown
                 if (x >= 0 and y >= 0 and x + w <= frame.shape[0] and y + h <= frame.shape[1]):
-                    flag = crop_and_save(frame, coordinate, "Data/{}".format(name), 100)
+                    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+                    flag = crop_and_save(gray, coordinate, "Data/{}".format(name), 50)
 
             ret, buffer = cv2.imencode('.jpg', frame)
             frame = buffer.tobytes()
