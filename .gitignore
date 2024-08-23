@@ -1,2 +1,5 @@
 GUI/serviceAccountKey.json
 __pycache__/
+*.jpeg
+*.jpg
+*.png

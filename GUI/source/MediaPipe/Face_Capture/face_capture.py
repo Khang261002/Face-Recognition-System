@@ -8,11 +8,11 @@ import os
 
 from source.MediaPipe.Face_Detection import face_detection
 
-def crop_and_save(frame, coordinate, path, num_images, count=[0]):
+def crop_and_save(username, frame, coordinate, path, num_images, count=[0]):
     x, y, w, h = coordinate
     cropped_frame = frame[y:y + h, x:x + w]
     im = Image.fromarray(cropped_frame)
-    im.save(path + "/img_{}.jpeg".format(count[0]))
+    im.save(path + "/{}_{}{}.jpg".format(username, '0'*(4 - len(str(count[0]))), count[0]))
 
     count[0] += 1
     if count[0] >= num_images:
@@ -43,12 +43,13 @@ def capture(name) -> Generator[bytes, None, None]:
 
             for coordinate in face_coordinates:
                 x, y, w, h = coordinate
-                cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 255, 255), 5)
 
                 # Add if statement to avoid saving the face that is not fully shown
                 if (x >= 0 and y >= 0 and x + w <= frame.shape[0] and y + h <= frame.shape[1]):
                     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-                    flag = crop_and_save(gray, coordinate, "Data/{}".format(name), 50)
+                    flag = crop_and_save(name, gray, coordinate, "Data/{}".format(name), 50)
+
+                cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 255, 255), 5)
 
             ret, buffer = cv2.imencode('.jpg', frame)
             frame = buffer.tobytes()

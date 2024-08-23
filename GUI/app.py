@@ -1,6 +1,6 @@
 from flask import Flask, redirect, url_for, request, render_template, Response
 from source.MediaPipe.Face_Capture import face_capture
-from source.LBPH.Face_Recognization import test as face_recognization
+from source.LBPH.Face_Recognition import test as face_recognition
 import cv2
 
 app = Flask(__name__)
@@ -29,7 +29,7 @@ def video_feed(name):
 
 @app.route('/video_feed2')
 def video_feed2():
-    return Response(face_recognization.recognize(),
+    return Response(face_recognition.recognize(),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
 @app.route('/terms.html')
