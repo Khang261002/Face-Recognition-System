@@ -24,8 +24,8 @@ def load_all_images(path):
 
 def encode_new_faces(filename="dataset_faces.pkl", update=False):
     __location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
-    path_to_encodings = os.path.join(__location__, 'Data/Encodings/{}'.format(filename))
-    path_to_images = os.path.join(__location__, 'Data/Images')
+    path_to_encodings = os.path.join(__location__, '../../../../Data/Encodings/{}'.format(filename))
+    path_to_images = os.path.join(__location__, '../../../../Data/Images')
     all_face_encodings = get_all_encodings(path_to_encodings)
     
     # Add new or update existing face encodings

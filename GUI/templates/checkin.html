@@ -25,7 +25,10 @@
             <a href="{{ url_for('terms') }}" class="hover:text-gray-300 mx-4">Terms and Conditions</a>
         </div>
     </div>
-    <script src=""></script> <!-- To be inserted -->
+    <div id="imageContainer" class="col-lg-8  offset-lg-2">
+        <h3 class="mt-5">Check-in</h3>
+        <img id="videoStream" src="{{ url_for('video_feed2') }}" width="600px">
+    </div>
     <footer class="text-center p-4 bg-gray-800 text-white w-full">
         <p><i>&copy;2024 FRS. All rights reserved.</i></p>
     </footer>
