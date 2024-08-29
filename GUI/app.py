@@ -1,7 +1,6 @@
 from flask import Flask, redirect, url_for, request, render_template, Response
 from source.MediaPipe.Face_Capture import face_capture
 from source.FaceRecognition.Face_Recognize import face_recognize
-import cv2
 
 app = Flask(__name__)
 
