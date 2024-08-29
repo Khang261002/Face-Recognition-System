@@ -5,6 +5,22 @@ import cv2
 
 from source.FaceRecognition.Face_Encoding import face_encoding
 
+def best_match_face(face_encodings, known_face_encodings, known_face_names):
+    face_names = []
+    for encoding in face_encodings:
+        # See if the face is a match for the known face(s)
+        matches = face_recognition.compare_faces(known_face_encodings, encoding, tolerance=0.45)
+        name = "Unknown"
+
+        # Or instead, use the known face with the smallest distance to the new face
+        face_distances = face_recognition.face_distance(known_face_encodings, encoding)
+        best_match_index = np.argmin(face_distances)
+        if matches[best_match_index]:
+            name = known_face_names[best_match_index]
+
+        face_names.append(name)
+    return face_names
+
 def recognize():
     all_face_encodings = face_encoding.encode_new_faces()
 
@@ -17,8 +33,8 @@ def recognize():
     face_encodings = []
     face_names = []
     process_this_frame = True
-    usingGPU = dlib.DLIB_USE_CUDA
-    if usingGPU:
+    use_GPU = dlib.DLIB_USE_CUDA
+    if use_GPU:
         print("Using GPU for face recognition")
     else:
         print("Using CPU for face recognition")
@@ -32,44 +48,32 @@ def recognize():
             frame = cv2.flip(frame, 1)
 
             # Resize frame of video to 1/4 size for faster face recognition processing
-            if not usingGPU:
-                frame = cv2.resize(frame, (0, 0), fx=0.25, fy=0.25)
-
             # Convert the image from BGR color (which OpenCV uses) to RGB color (which face_recognition uses)
-            rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            if not use_GPU:
+                small_frame = cv2.resize(frame, (0, 0), fx=0.25, fy=0.25)
+                rgb_frame = cv2.cvtColor(small_frame, cv2.COLOR_BGR2RGB)
+            else:
+                rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
             # Only process every other frame of video to save time
             if process_this_frame:
                 # Find all the faces and face encodings in the current frame of video
                 face_locations = face_recognition.face_locations(rgb_frame)
                 # Re-sample the face for more precise recognition
-                if usingGPU:
-                    face_encodings = face_recognition.face_encodings(rgb_frame, face_locations, 10)
+                if use_GPU:
+                    face_encodings = face_recognition.face_encodings(rgb_frame, face_locations, 50, model="large")
                 else:
-                    face_encodings = face_recognition.face_encodings(rgb_frame, face_locations)
+                    face_encodings = face_recognition.face_encodings(rgb_frame, face_locations, model="large")
 
-                face_names = []
-                for encoding in face_encodings:
-                    # See if the face is a match for the known face(s)
-                    matches = face_recognition.compare_faces(known_face_encodings, encoding)
-                    name = "Unknown"
-
-                    # Or instead, use the known face with the smallest distance to the new face
-                    face_distances = face_recognition.face_distance(known_face_encodings, encoding)
-                    best_match_index = np.argmin(face_distances)
-                    if matches[best_match_index]:
-                        name = known_face_names[best_match_index]
-
-                    face_names.append(name)
+                face_names = best_match_face(face_encodings, known_face_encodings, known_face_names)
 
             # Process less frames only for higher fps
-            if not usingGPU:
-                process_this_frame = not process_this_frame
+            process_this_frame = not process_this_frame
 
             # Display the results
             for (top, right, bottom, left), name in zip(face_locations, face_names):
                 # Scale back up face locations since the frame we detected in was scaled to 1/4 size
-                if not usingGPU:
+                if not use_GPU:
                     top *= 4
                     right *= 4
                     bottom *= 4
@@ -80,16 +84,12 @@ def recognize():
 
                 # Draw a label with a name below the face
                 font = cv2.FONT_HERSHEY_DUPLEX
-                cv2.putText(frame, name, (left, bottom + 25), font, 1, (0, 0, 255), 2)
+                cv2.putText(frame, name, (left, bottom + 25), font, 1, (0, 255, 0), 2)
 
             ret, buffer = cv2.imencode('.jpg', frame)
             frame = buffer.tobytes()
             yield (b'--frame\r\n'
                    b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
-
-        # Hit 'q' on the keyboard to quit!
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            break
 
     # Release handle to the webcam
     webcam.release()
