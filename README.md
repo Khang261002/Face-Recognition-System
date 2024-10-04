@@ -21,7 +21,7 @@ The project consists of two main Python scripts:
 2. Install the required dependencies: (We are using Python 3.11)
 
     ```bash
-    pip install opencv-python pillow numpy flask mediapipe
+    pip install opencv-python pillow numpy flask mediapipe face-recognition 
     ```
 
 3. Run the `face_capture.py` script to start the face recognition system:
@@ -29,8 +29,13 @@ The project consists of two main Python scripts:
     ```bash
     python face_capture.py
     ```
+4. Install dlib
+    Download [dlib](https://github.com/Silufer/dlib-python/blob/main/dlib-19.24.1-cp311-cp311-win_amd64.whl)
+    ```bash
+    pip install /path/to/dlib-19.24.1-cp311-cp311-win_amd64.whl
+    ```
 
-4. Press any key to exit the program.
+5. Press any key to exit the program.
 
 ## File Structure
 
