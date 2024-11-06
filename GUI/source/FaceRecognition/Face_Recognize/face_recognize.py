@@ -39,7 +39,7 @@ def recognize():
     else:
         print("Using CPU for face recognition")
 
-    webcam = cv2.VideoCapture(1, cv2.CAP_DSHOW)
+    webcam = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 
     while webcam.isOpened():
         # Grab a single frame of video
@@ -61,7 +61,7 @@ def recognize():
                 face_locations = face_recognition.face_locations(rgb_frame)
                 # Re-sample the face for more precise recognition
                 if use_GPU:
-                    face_encodings = face_recognition.face_encodings(rgb_frame, face_locations, 50, model="large")
+                    face_encodings = face_recognition.face_encodings(rgb_frame, face_locations, 100)
                 else:
                     face_encodings = face_recognition.face_encodings(rgb_frame, face_locations, model="large")
 
@@ -84,7 +84,10 @@ def recognize():
 
                 # Draw a label with a name below the face
                 font = cv2.FONT_HERSHEY_DUPLEX
-                cv2.putText(frame, name, (left, bottom + 25), font, 1, (0, 255, 0), 2)
+                if name == "Unknown":
+                    cv2.putText(frame, name, (left, bottom + 25), font, 1, (0, 0, 255), 2)
+                else:
+                    cv2.putText(frame, name, (left, bottom + 25), font, 1, (0, 255, 0), 2)
 
             ret, buffer = cv2.imencode('.jpg', frame)
             frame = buffer.tobytes()
