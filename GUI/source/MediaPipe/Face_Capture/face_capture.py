@@ -84,21 +84,28 @@ def capture(name) -> Generator[bytes, None, None]:
     if not os.path.exists("Data/Images"):
         os.makedirs("Data/Images")
 
-    landmarksList = []
+    landmarks_list = []
+    standardized_landmarks_list = []
+    normalized_landmarks_list = []
 
     while webcam.isOpened() and flag:
         successful_frame_read, frame = webcam.read()
         if successful_frame_read:
             frame = cv2.flip(frame, 1)
-            face_coordinates, landmarks = face_detection.detection(frame)
+            face_coordinates, landmarks, standardized_landmarks, normalized_landmarks = face_detection.detection(frame)
 
             if len(face_coordinates) == 1:
                 coordinate = face_coordinates[0]
                 x, y, w, h = coordinate
+
                 # Take the face image when the face is in the window and big enough
                 if validFace(frame, coordinate):
                     flag = crop_and_save(name, cv2.cvtColor(frame, cv2.COLOR_BGR2RGB), coordinate, "Data/Images", 100)
-                    landmarksList.append(landmarks[0])
+
+                    landmarks_list.append(landmarks[0])
+                    standardized_landmarks_list.append(standardized_landmarks[0])
+                    normalized_landmarks_list.append(normalized_landmarks[0])
+
                 cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 255, 255), 5)
 
             ret, buffer = cv2.imencode('.jpg', frame)
@@ -111,7 +118,10 @@ def capture(name) -> Generator[bytes, None, None]:
     with open(os.path.join(__location__, "../../../static/json/streaming_data.json"), "w") as outfile:
         outfile.write(json_object)
 
-    save_face_landmarks_list_to_file(name, landmarksList, "Data/Users")
+    # Save the landmarks to files
+    save_face_landmarks_list_to_file(name, landmarks_list, "Data/Landmarks/Original")
+    save_face_landmarks_list_to_file(name, standardized_landmarks_list, "Data/Landmarks/Standardized")
+    save_face_landmarks_list_to_file(name, normalized_landmarks_list, "Data/Landmarks/Normalized")
 
     # Release the webcam
     webcam.release()
